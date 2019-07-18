@@ -5,5 +5,7 @@
 ant<img src="{{ $ant }}" width = 200 height = 120>
 bird<img src="{{ $bird }}" width = 200 height = 120>
 cat<img src="{{ $cat }}" width = 200 height = 120>
+god<img src="{{ $god }}" width = 200 height = 120>
+spider<img src="{{ $spider }}" width = 200 height = 120>
 </body>
 </html>
