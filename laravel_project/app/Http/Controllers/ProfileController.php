@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+Use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -72,4 +74,20 @@ public function bird()
     ];
     return view('test/bird', $data);
 }
+
+public function index()
+    {
+		# $sql = "select * from profiles";
+	  
+        # $profiles = DB::select($sql, []);
+          
+        $profiles = Profile::getAll();
+
+    	$data = [
+		'profiles' => $profiles
+	];
+     return view('profile/index' , $data);
+    }
+
+
 }

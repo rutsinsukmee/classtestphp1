@@ -100,6 +100,8 @@ Route::get("/profile/{id}", "ProfileController@show");
 Route::get( "/newgallery" , "ProfileController@gallery" );
 Route::get( "/newgallery/ant" , "ProfileController@ant" );
 Route::get( "/newgallery/bird" , "ProfileController@bird" );
+Route::get('/profile', 'ProfileController@index');
+
 
 
 
