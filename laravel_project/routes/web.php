@@ -102,6 +102,16 @@ Route::get( "/newgallery/ant" , "ProfileController@ant" );
 Route::get( "/newgallery/bird" , "ProfileController@bird" );
 Route::get('/profile', 'ProfileController@index');
 
+Route::get('/employee', 'EmployeeController@index');
+
+Route::get('/employee/{id}', 'EmployeeController@show');
+
+Route::get('/position', 'PositionController@index');
+
+Route::get('/position/{id}', 'PositionController@show');
+
+
+
 
 
 
