@@ -22,7 +22,26 @@
 		<td>
 			<a href="{{ url('/') }}/position/{{ $position->id }}">View</a>
 			<a href="{{ url('/') }}/position/{{ $position->id }}/edit">Edit</a>
+			<form
+        action="{{ url('/') }}/position/{{ $position->id }}"
+        method="POST"
+        onsubmit="validate();"
+        style="display:inline" >
+
+    	{{ csrf_field() }}
+    	{{ method_field('DELETE') }}
+	<button type="submit">Delete</button>
+</form>
 		</td>
 	</tr>
 	@endforeach
 </table>
+<script>
+	function validate(){
+		//SUBMIT
+		var wantToDelete= confirm('Are you sure to delete this item?');
+		if(wantToDelete){
+			this.submit();
+		}
+	}
+</script>

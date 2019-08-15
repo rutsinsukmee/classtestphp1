@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\Position;
 
 class EmployeeController extends Controller
 {
@@ -72,7 +73,12 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        // return view("employee/create");
+
+        $data = [
+            "positions" => Position::getAll() ,
+        ];
+        return view("employee/create",$data);
     }
 
     /**
@@ -83,7 +89,12 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //GET ARRAY OF ALL DATA FROM THE PREVIOUS FORM BY NAME ATTRIBUTE
+        $item = $request->all();  
+        //$item = $request->except(['_method','_token']);
+        $employee = Employee::storeItem($item);
+        $id = $employee->id;
+        return redirect("/employee/{$id}/edit");
     }
 
     /**
@@ -108,7 +119,11 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            "employee" => Employee::getItem($id),
+            "positions" => Position::getAll(),
+        ];
+        return view("employee/edit",$data);
     }
 
     /**
@@ -120,7 +135,11 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //GET ARRAY OF ALL DATA FROM THE PREVIOUS FORM BY NAME ATTRIBUTE
+        $item = $request->all();        
+        //$item = $request->except(['_method','_token']);
+        $employee = Employee::updateItem($id,$item);
+        return redirect("/employee/{$id}/edit");
     }
 
     /**
@@ -131,6 +150,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::destroyItem($id);
+        return redirect('/employee');
     }
 }
