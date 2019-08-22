@@ -24,7 +24,7 @@
 		<td>{{ $employee->name }} </td>
 		<td>{{ $employee->age }}</td>
 		<td>{{ $employee->address }}</td>
-		<td>{{ $employee->salary }}</td>
+		<td>{{ $employee->salary }}</td> 
 		<td>{{ $employee->position_id }}</td>
 		
 		<td>

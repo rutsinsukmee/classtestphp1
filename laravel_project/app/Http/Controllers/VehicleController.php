@@ -3,37 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Position;
-use App\Employee;
+use App\Vehicle;
 
-
-class PositionController extends Controller
+class VehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         //GET KEYWORD FROM URL
         $q = $request->input('q');
 
         //METHOD : 2 SHORT
         //NOT EMPTY = HAVE SOME KEYWORD in $q
-        $positions = ( !empty($q) ) ? 
-        Position::search($q) : 
-        Position::getAll();
+        $vehicles = ( !empty($q) ) ? 
+        Vehicle::search($q) : 
+        Vehicle::getAll();
 
         //PACK DATA
         $data = [
-            "positions" => $positions ,
+            "vehicles" => $vehicles ,
             "q" => $q,    //send $q to display in view
         ];
         
         //DISPLAY IN VIEW
-        return view('position/index',$data);
+        return view('vehicle/index',$data);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +40,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        return view("position/create");
+        return view("vehicle/create");
     }
 
     /**
@@ -55,10 +53,14 @@ class PositionController extends Controller
     {
         $item = $request->all();
         //$item = $request->except(['_method','_token']);
-        $position = Position::storeItem($item);
-        $id = $position->id;
-        $description = $position->description;
-        return redirect("/position/{$id}/edit");
+        $vehicle = Vehicle::storeItem($item);
+        $id = $vehicle->id;
+        $brand = $vehicle->brand;
+        $series = $vehicle->series;
+        $colour = $vehicle->colour;
+        $year = $vehicle->year;
+        $mileage = $vehicle->mileage;
+        return redirect("/vehicle");
     }
 
     /**
@@ -67,12 +69,9 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) 
+    public function show($id)
     {
-        $data = [
-            "position" => Position::getItem($id),
-        ];
-        return view('position/show',$data);
+        //
     }
 
     /**
@@ -83,10 +82,7 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            "positions" => Position::getItem($id),
-        ];
-        return view("position/edit",$data);
+        //
     }
 
     /**
@@ -98,11 +94,7 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //GET ARRAY OF ALL DATA FROM THE PREVIOUS FORM BY NAME ATTRIBUTE
-        $item = $request->all();        
-        //$item = $request->except(['_method','_token']);
-        $position = Position::updateItem($id,$item);
-        return redirect("/position/{$id}/edit");
+        //
     }
 
     /**
@@ -113,7 +105,6 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        Position::destroyItem($id);
-        return redirect('/position');
+        //
     }
 }

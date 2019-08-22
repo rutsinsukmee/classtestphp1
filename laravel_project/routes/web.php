@@ -100,7 +100,7 @@ Route::get( "/newgallery" , "ProfileController@gallery" );
 Route::get( "/newgallery/ant" , "ProfileController@ant" );
 Route::get( "/newgallery/bird" , "ProfileController@bird" );
 
-Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee', 'EmployeeController@index'); 
 Route::get("/employee/create", 'EmployeeController@create');
 Route::post("/employee", "EmployeeController@store");
 Route::get('/employee/{id}', 'EmployeeController@show');
@@ -116,6 +116,13 @@ Route::get("/position/{id}/edit", 'PositionController@edit');
 Route::put("/position/{id}", "PositionController@update");
 Route::delete('/position/{id}', 'PositionController@destroy');
 
+Route::get('/vehicle', 'VehicleController@index');
+Route::get("/vehicle/create", 'VehicleController@create');
+Route::post("/vehicle", "VehicleController@store");
+Route::get('/vehicle/{id}', 'VehicleController@show');
+Route::get("/vehicle/{id}/edit", 'VehicleController@edit');
+Route::put("/vehicle/{id}", "VehicleController@update");
+Route::delete('/vehicle/{id}', 'VehicleController@destroy');
 
 
 
